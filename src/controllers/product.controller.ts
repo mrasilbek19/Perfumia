@@ -129,8 +129,8 @@ productController.plusLike = async (req: ExtendedRequest, res: Response) => {
 
 productController.minusLike = async (req: ExtendedRequest, res: Response) => {
     try {
-        const memberId = req.member._id;
-        const id = req.params.id;
+        const memberId = req.member._id,
+            id = req.params.id;
         console.log(memberId, id)
 
         const result = await productService.minusLike(
