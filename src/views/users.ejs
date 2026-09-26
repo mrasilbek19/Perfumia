@@ -51,47 +51,45 @@
                                     <span class="heading-rule" aria-hidden="true"></span>
                                 </div>
                                 <div class="table-shell">
-                                <table class="table table-hover table-sm">
-                                    <thead class="thead-light">
-                                        <tr class="thead-light">
-                                            <th scope="col">No</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Phone</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
+                                    <table class="table table-hover table-sm">
+                                        <thead class="thead-light">
+                                            <tr class="thead-light">
+                                                <th scope="col">No</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Phone</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
 
-                                    <% users.map(function(value, index) { %>
-                                        <tbody>
-                                          <tr>
-                                            <td>
-                                                <%= index+1 %>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="user-name" aria-haspopup="dialog"
-                                                    data-user="<%= JSON.stringify({ memberNick: value.memberNick, memberEmail: value.memberEmail, memberPhone: value.memberPhone, memberAddress: value.memberAddress, memberDesc: value.memberDesc, memberImage: value.memberImage, memberType: value.memberType, memberStatus: value.memberStatus, memberPoints: value.memberPoints }) %>">
-                                                    <%= value.memberNick || 'Not provided' %>
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <%= value.memberPhone %>
-                                            </td>
-                                            <td style="width: 13%">
-                                                <select class="spec-select member-status" id="<%= value._id%>">
-                                                    <option value="ACTIVE" <%=value.memberStatus==='ACTIVE' ? 'selected'
-                                                        : '' %>>ACTIVE</option>
-                                                    <option value="BLOCK" <%=value.memberStatus==='BLOCK' ? 'selected'
-                                                        : '' %>>BLOCK</option>
-                                                    <option value="DELETE" <%=value.memberStatus==='DELETE' ? 'selected'
-                                                        : '' %>>DELETE</option>
-                                                </select>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                        <% })%>
-
-
-                                </table>
+                                        <% users.map(function(value, index) { %>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <%= index+1 %>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="user-name" aria-haspopup="dialog"
+                                                            data-user="<%= JSON.stringify({ memberNick: value.memberNick, memberEmail: value.memberEmail, memberPhone: value.memberPhone, memberAddress: value.memberAddress, memberDesc: value.memberDesc, memberImage: value.memberImage, memberType: value.memberType, memberStatus: value.memberStatus, memberPoints: value.memberPoints }) %>">
+                                                            <%= value.memberNick || 'Not provided' %>
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <%= value.memberPhone %>
+                                                    </td>
+                                                    <td style="width: 13%">
+                                                        <select class="spec-select member-status" id="<%= value._id%>">
+                                                            <option value="ACTIVE" <%=value.memberStatus==='ACTIVE'
+                                                                ? 'selected' : '' %>>ACTIVE</option>
+                                                            <option value="BLOCK" <%=value.memberStatus==='BLOCK'
+                                                                ? 'selected' : '' %>>BLOCK</option>
+                                                            <option value="DELETE" <%=value.memberStatus==='DELETE'
+                                                                ? 'selected' : '' %>>DELETE</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <% })%>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -100,31 +98,36 @@
         </div>
 
         <% if (member) { %>
-                    <dialog class="user-detail-overlay" aria-labelledby="user-detail-title">
-                        <div class="user-detail-modal">
-                            <header class="user-detail-header">
-                                <button type="button" class="user-detail-close" aria-label="Close user information" autofocus>&times;</button>
-                                <span class="page-eyebrow">PERFUMIA ADMIN</span>
-                                <h2 id="user-detail-title">User Information</h2>
-                            </header>
-                            <div class="user-detail-content">
-                                <div class="user-detail-profile">
-                                    <img class="user-detail-image" alt="Default avatar" src="/img/default.webp" />
-                                </div>
-                                <dl class="user-detail-grid">
-                                    <% const detailFields = { memberNick: 'Name', memberPhone: 'Phone', memberEmail: 'Email', memberAddress: 'Address', memberType: 'Member Type', memberStatus: 'Member Status', memberPoints: 'Points', memberDesc: 'Description' }; %>
-                                    <% Object.entries(detailFields).forEach(function([field, label]) { %>
-                                        <div class="<%= field === 'memberDesc' ? 'user-detail-description' : '' %>">
-                                            <dt><%= label %></dt>
-                                            <dd data-field="<%= field %>">Not provided</dd>
-                                        </div>
-                                    <% }) %>
-                                </dl>
-                            </div>
+            <dialog class="user-detail-overlay" aria-labelledby="user-detail-title">
+                <div class="user-detail-modal">
+                    <header class="user-detail-header">
+                        <button type="button" class="user-detail-close" aria-label="Close user information"
+                            autofocus>&times;</button>
+                        <span class="page-eyebrow">PERFUMIA ADMIN</span>
+                        <h2 id="user-detail-title">User Information</h2>
+                    </header>
+                    <div class="user-detail-content">
+                        <div class="user-detail-profile">
+                            <img class="user-detail-image" alt="Default avatar" src="/img/default.webp" />
                         </div>
-                    </dialog>
-        <% } %>
+                        <dl class="user-detail-grid">
+                            <% const detailFields={ memberNick: 'Name' , memberPhone: 'Phone' , memberEmail: 'Email' ,
+                                memberAddress: 'Address' , memberType: 'Member Type' , memberStatus: 'Member Status' ,
+                                memberPoints: 'Points' , memberDesc: 'Description' }; %>
+                                <% Object.entries(detailFields).forEach(function([field, label]) { %>
+                                    <div class="<%= field === 'memberDesc' ? 'user-detail-description' : '' %>">
+                                        <dt>
+                                            <%= label %>
+                                        </dt>
+                                        <dd data-field="<%= field %>">Not provided</dd>
+                                    </div>
+                                    <% }) %>
+                        </dl>
+                    </div>
+                </div>
+            </dialog>
+            <% } %>
 
-        <script type="text/javascript" src="/js/users.js"></script>
+                <script type="text/javascript" src="/js/users.js"></script>
 
-        <%- include('includes/footer') %>
+                <%- include('includes/footer') %>
